@@ -1,29 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NameField : MonoBehaviour
 {
-    [SerializeField] private GameObject nameInputFieldPrefab;
+    private static float _yPosition = 800f; 
     [SerializeField] private float yOffsetStep = 200f;
-    private static float _yOffset;
-    private static int _playerIndex;
-    
-    private void Start()
+
+    public void RemoveNameField()
     {
-        _playerIndex = 0;
-        _yOffset = 0f;
+        GameObject.FindGameObjectWithTag("InputField").GetComponent<InputField>().RemoveInputField();
+        Destroy(gameObject);
     }
 
-    public void OnNameEnter(string playerName)
+    
+    public void MoveNameField()
     {
-        
-        PlayerPrefs.SetString(("PlayerName"+_playerIndex), playerName);
-        _playerIndex++;
-        _yOffset -= yOffsetStep;
-        var field = Instantiate(nameInputFieldPrefab, transform);
-        var rect = field.GetComponent<RectTransform>();
-        rect.anchoredPosition = new Vector2(0, _yOffset);
+        foreach (var field in GameObject.FindGameObjectsWithTag("NameField"))
+        {
+            field.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,_yPosition);
+            _yPosition -= yOffsetStep;
+        }
     }
 }

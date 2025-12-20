@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayButton
   - StatsButton
+  - NameField
+  - InputField
   layers:
   - Default
   - TransparentFX
