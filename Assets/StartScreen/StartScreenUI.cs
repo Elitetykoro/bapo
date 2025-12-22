@@ -52,9 +52,9 @@ public class StartScreenUI : MonoBehaviour
     }
     
     // Scene Loading Methods
-    public void SoloStart()
+    public void PlayerScreenStart()
     {
-        SceneManager.LoadScene("Solo");
+        SceneManager.LoadScene("PlayerScreen");
     }
     public void VersusStart()
     {
